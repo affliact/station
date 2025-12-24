@@ -1,6 +1,6 @@
 
 /obj/item/bodypart/chest
-	name = BODY_ZONE_CHEST
+	name = "chest"
 	desc = "Невежливо пялиться на чью-то грудь."
 	icon_state = "default_human_chest"
 	max_damage = LIMB_MAX_HP_CORE

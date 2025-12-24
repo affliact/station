@@ -1,6 +1,6 @@
 
 /datum/surgery/amputation
-	name = "Amputation"
+	name = "Ампутация"
 	surgery_flags = SURGERY_REQUIRE_RESTING | SURGERY_REQUIRE_LIMB | SURGERY_MORBID_CURIOSITY
 	possible_locs = list(
 		BODY_ZONE_R_ARM,
@@ -19,7 +19,7 @@
 	)
 
 /datum/surgery/amputation/mechanic
-	name = "Disassemble"
+	name = "Разбор"
 	requires_bodypart_type = BODYTYPE_ROBOTIC
 	steps = list(
 		/datum/surgery_step/mechanic_open,
@@ -28,7 +28,7 @@
 	)
 
 /datum/surgery/amputation/peg
-	name = "Detach"
+	name = "Отсоединить"
 	requires_bodypart_type = BODYTYPE_PEG
 	steps = list(
 		/datum/surgery_step/sever_limb/peg,	//Easy come, easy go
@@ -40,7 +40,7 @@
 	return ..()
 
 /datum/surgery_step/sever_limb
-	name = "sever limb (circular saw)"
+	name = "отрежьте конечность (циркулярная пила)"
 	implements = list(
 		TOOL_SCALPEL = 100,
 		TOOL_SAW = 100,
@@ -56,7 +56,7 @@
 	surgery_effects_mood = TRUE
 
 /datum/surgery_step/sever_limb/mechanic
-	name = "detach limb (wrench or crowbar)"
+	name = "отсоедините конечность (ключ или лом)"
 	implements = list(
 		/obj/item/shovel/giant_wrench = 300,
 		TOOL_WRENCH = 100,
@@ -69,7 +69,7 @@
 	preop_sound = 'sound/machines/airlock/doorclick.ogg'
 
 /datum/surgery_step/sever_limb/peg
-	name = "detach limb (circular saw)"
+	name = "отсоедините конечность (циркулярная пила)"
 	implements = list(
 		TOOL_SAW = 100,
 		/obj/item/shovel/serrated = 100,
@@ -85,22 +85,22 @@
 	display_results(
 		user,
 		target,
-		span_notice("You begin to sever [target]'s [target.parse_zone_with_bodypart(target_zone)]..."),
-		span_notice("[user] begins to sever [target]'s [target.parse_zone_with_bodypart(target_zone)]!"),
-		span_notice("[user] begins to sever [target]'s [target.parse_zone_with_bodypart(target_zone)]!"),
+		span_notice("Вы начинаете отрезать [target.parse_zone_with_bodypart(target_zone, ACCUSATIVE)] у [target]..."),
+		span_notice("[user] начинает отрезать [target.parse_zone_with_bodypart(target_zone, ACCUSATIVE)] у [target]!"),
+		span_notice("[user] начинает отрезать [target.parse_zone_with_bodypart(target_zone, ACCUSATIVE)] у [target]!"),
 	)
-	display_pain(target, "You feel a gruesome pain in your [parse_zone(target_zone)]'s joint!")
+	display_pain(target, "Вы чувствуете жуткую боль в [parse_zone(target_zone, PREPOSITIONAL)]!")
 
 
 /datum/surgery_step/sever_limb/success(mob/user, mob/living/carbon/human/target, target_zone, obj/item/tool, datum/surgery/surgery, default_display_results = FALSE)
 	display_results(
 		user,
 		target,
-		span_notice("You sever [target]'s [target.parse_zone_with_bodypart(target_zone)]."),
-		span_notice("[user] severs [target]'s [target.parse_zone_with_bodypart(target_zone)]!"),
-		span_notice("[user] severs [target]'s [target.parse_zone_with_bodypart(target_zone)]!"),
+		span_notice("Вы отрезаете [target.parse_zone_with_bodypart(target_zone, ACCUSATIVE)] у [target]."),
+		span_notice("[user] отрезает [target.parse_zone_with_bodypart(target_zone, ACCUSATIVE)] у [target]!"),
+		span_notice("[user] отрезает [target.parse_zone_with_bodypart(target_zone, ACCUSATIVE)] у [target]!"),
 	)
-	display_pain(target, "You can no longer feel your severed [target.parse_zone_with_bodypart(target_zone)]!")
+	display_pain(target, "Вы больше не чувствуете свою [target.parse_zone_with_bodypart(target_zone, ACCUSATIVE)]!")
 
 	if(HAS_MIND_TRAIT(user, TRAIT_MORBID) && ishuman(user))
 		var/mob/living/carbon/human/morbid_weirdo = user

@@ -1,5 +1,5 @@
 /datum/surgery/asthmatic_bypass
-	name = "Asthmatic Bypass"
+	name = "Шунтирование трахеи"
 	surgery_flags = SURGERY_REQUIRE_RESTING | SURGERY_REQUIRE_LIMB
 	requires_bodypart_type = NONE
 	organ_to_manipulate = ORGAN_SLOT_LUNGS
@@ -22,7 +22,7 @@
 	return (patient.has_quirk(/datum/quirk/item_quirk/asthma))
 
 /datum/surgery_step/expand_windpipe
-	name = "force open windpipe (retractor)"
+	name = "расширте трахею (ретрактор)"
 	implements = list(
 		TOOL_RETRACTOR = 80,
 		TOOL_WIRECUTTER = 45,
@@ -39,11 +39,11 @@
 	display_results(
 		user,
 		target,
-		span_notice("You start to stretch [target]'s windpipe, trying your best to avoid nearby blood vessels..."),
-		span_notice("[user] begins to stretch [target]'s windpipe, taking care to avoid any nearby blood vessels."),
-		span_notice("[user] begins to stretch [target]'s windpipe."),
+		span_notice("Вы начинаете растягивать трахею [target], стараясь избежать повреждения слизистой и сосудов..."),
+		span_notice("[user] начинает растягивать трахею [target], осторожно избегая повреждения слизистой и сосудов."),
+		span_notice("[user] начинает растягивать трахею [target]."),
 	)
-	display_pain(target, "You feel an agonizing stretching sensation in your neck!")
+	display_pain(target, "Вы чувствуете мучительное растяжение в шее!")
 
 /datum/surgery_step/expand_windpipe/success(mob/user, mob/living/target, target_zone, obj/item/tool, datum/surgery/surgery, default_display_results = TRUE)
 	if (!reduce_inflammation(user, target, tool, surgery))
@@ -53,9 +53,9 @@
 	display_results(
 		user,
 		target,
-		span_notice("You stretch [target]'s windpipe with [tool], managing to avoid the nearby blood vessels and arteries."),
-		span_notice("[user] succeeds at stretching [target]'s windpipe with [tool], avoiding the nearby blood vessels and arteries."),
-		span_notice("[user] finishes stretching [target]'s windpipe.")
+		span_notice("Вы растягиваете трахею [target] с помощью [tool.declent_ru(GENITIVE)], удачно избегая повреждения слизистой и сосудов."),
+		span_notice("[user] успешно растягивает трахею [target] с помощью [tool.declent_ru(GENITIVE)], избегая повреждения слизистой и сосудов."),
+		span_notice("[user] заканчивает растягивать трахею [target]."),
 	)
 
 	return ..()
@@ -67,9 +67,9 @@
 	display_results(
 		user,
 		target,
-		span_bolddanger("You stretch [target]'s windpipe with [tool], but accidentally clip a few arteries!"),
-		span_bolddanger("[user] succeeds at stretching [target]'s windpipe with [tool], but accidentally clips a few arteries!"),
-		span_bolddanger("[user] finishes stretching [target]'s windpipe, but screws up!")
+		span_bolddanger("Вы растягиваете трахею [target] с помощью [tool.declent_ru(GENITIVE)], но случайно повреждает слизистую и сосуды!"),
+		span_bolddanger("[user] успешно растягивает трахею [target] с помощью [tool.declent_ru(GENITIVE)], но случайно повреждает слизистую и сосуды!"),
+		span_bolddanger("[user] заканчивает растягивать трахею [target], но всё портит!"),
 	)
 
 	target.losebreath++
