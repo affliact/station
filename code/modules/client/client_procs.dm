@@ -1224,7 +1224,7 @@ GLOBAL_LIST_INIT(unrecommended_builds, list(
 	attempt_auto_fit_viewport()
 
 /client/verb/toggle_status_bar()
-	set name = "Переключить Строку Состояния"
+	set name = "Переключить Видимость СтатусБар"
 	set category = "OOC"
 
 	show_status_bar = !show_status_bar
